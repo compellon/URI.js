@@ -1892,7 +1892,7 @@
       return this;
     }
 
-    _path = URI.recodePath(_path);
+    _path = decodeURIComponent(_path);
 
     var _was_relative;
     var _leadingParents = '';
@@ -1946,7 +1946,7 @@
       _path = _leadingParents + _path.substring(1);
     }
 
-    this._parts.path = _path;
+    this._parts.path = _path.split('/').map(x => encodeURIComponent(x)).join('/');
     this.build(!build);
     return this;
   };
